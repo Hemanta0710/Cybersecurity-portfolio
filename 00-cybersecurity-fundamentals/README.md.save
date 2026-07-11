@@ -1,0 +1,56 @@
+# Cybersecurity Fundamentals — TryHackMe (Cyber Security 101 path)
+
+Foundational rooms covering core concepts before moving into hands-on technical work.
+
+## Careers in Cyber
+Overview of the different roles within cybersecurity — including Penetration Tester,
+Red Teamer, Security Engineer, SOC Analyst, and Security Consultant — and how their
+day-to-day responsibilities differ between offensive and defensive functions.
+
+**What I learned:** Cybersecurity isn't one job — it splits broadly into offense
+(finding weaknesses before attackers do) and defense (monitoring and responding to
+threats). Seeing the range of roles helped me start narrowing down which path (Blue
+Team vs Red Team) fits my interests as I continue building projects in both directions.
+
+## Defensive Security Intro
+Introduction to defensive security (Blue Team) — what it involves in a real
+organization, including monitoring, threat detection, digital forensics, and incident
+response, plus the technologies involved (SIEMs, IDS/IPS, endpoint protection).
+
+**What I learned:** Defensive security is proactive as well as reactive — it's not
+just "waiting for an alert," it includes hardening systems and reducing attack surface
+ahead of time. This gave me useful context for setting up my own HIDS project with
+Wazuh/OSSEC later in this portfolio.
+
+## Offensive Security Intro
+Hands-on room simulating a penetration test against a fake bank web application
+("FakeBank"), demonstrating how easily a poorly secured web app can be exploited.
+
+**Tools used:** Gobuster (directory/file brute-forcing tool), web browser, Kali terminal
+
+**Steps:**
+1. Started the target machine (FakeBank website) and opened a terminal.
+2. Ran Gobuster against the site with a wordlist to brute-force hidden directories:
+   `gobuster dir -u http://fakebank.thm -w wordlist.txt`
+3. Gobuster revealed two hidden paths: `/images` and `/bank-transfer` — the second
+   led to an unprotected admin/staff portal that was never meant to be public.
+4. Used the exposed `/bank-transfer` page to transfer $2000 from account 2276 to
+   my own account (8881), with no authentication required.
+5. Confirmed the transfer succeeded by checking the updated account balance, which
+   revealed the room's flag.
+
+**What I learned:** This room made "security through obscurity" concrete — a page
+not being linked anywhere doesn't mean it's protected. One unsecured admin endpoint
+let anyone move money with zero authentication. It was also my first hands-on use
+of Gobuster, which I now know is a standard first step whenever recon turns up a
+web server.
+
+## Training Impact on Teams
+Overview of why security awareness training matters at an organizational level,
+and its effect on reducing human-error-based incidents such as phishing
+susceptibility and weak password practices.
+
+**What I learned:** A large share of breaches trace back to human error rather than
+purely technical flaws, which is why security awareness training is treated as a
+core control, not just a compliance checkbox. This ties directly into why I'm
+building the phishing simulator project later in this portfolio.
